@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "NCi2mw7yZ+LpFUC1JScP/0gdAVGYAfJsd5Al//VpZlw=",
+  "Source": "whatsapp_tests",
+  "BasePath": "_content/whatsapp_tests",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

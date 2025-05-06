@@ -1,0 +1,55 @@
+curl 'REDACTED' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer REDACTED' \
+-d '{
+  // MENU PRINCIPAL
+  "messaging_product": "whatsapp",
+  "recipient_type": "individual",
+  "to": "REDACTED",
+  "type": "interactive",
+  "interactive": {
+    "type": "list",
+    "header": {
+      "type": "text",
+      "text": "Gracias por contactar a la CFE."
+    },
+    "body": {
+      "text": "Haga click en en menu de opciones para elegir su consulta."
+    },
+    
+    "action": {
+      "button": "Menu de opciones",
+      "sections": [
+        {
+          "title": "Menu Principal",
+          "rows": [
+            {
+              // ROW CLEARED BALANCE
+              "id": "ROW_CLEAR_BAL",
+              "title": "1",
+              "description": "Para Conocer saldo a favor, responder con 1."
+            },
+            {
+              // ROW OUTSTANDING BALANCE
+              "id": "ROW_OUT_BAL",
+              "title": "2",
+              "description": "Para Conocer saldo a pagar, responder con 2."
+            },
+            {
+              // ROW DUE DATE
+              "id": "ROW_DUE_DATE",
+              "title": "3",
+              "description":"Para conocer fecha limite; responder al bot con 3."
+            },
+            {
+              // ROW CONTACT SUPPORT
+              "id": "ROW_SUPPORT",
+              "title": "4",
+              "description": "Si ninguna opcion satisface, contactar soporte ."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}'

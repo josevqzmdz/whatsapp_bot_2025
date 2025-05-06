@@ -1,0 +1,14 @@
+curl 'REDACTED' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer REDACTED' \
+-d '{
+  "messaging_product": "whatsapp",
+  "to": "REDACTED",
+  "type": "template",
+  "template": {
+    "name": "hello_world",
+    "language": {
+      "code": "es_MX"
+    }
+  }
+}'
