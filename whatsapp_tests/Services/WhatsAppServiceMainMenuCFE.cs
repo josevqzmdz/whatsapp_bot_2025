@@ -9,26 +9,26 @@ namespace whatsapp_tests.Services
         private readonly HttpClient _httpClient;
 
         // constructor
-        /*
-        public WhatsAppServiceMainMenuCFE(HttpClient httpCLient)
+        
+        public WhatsAppServiceMainMenuCFE(HttpClient httpClient, String WhatsAppToken)
         {
-            _httpClient = httpCLient;
+            _httpClient = httpClient;
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(
-        "Bearer",
-        "EAATyUT8goNsBO78PyQq3tlsaWnzbTixRjgmt3BXMTyLjMMbj2TZCuMLBaO6IcACTg378MBthV6S1dBDWIUd66nY2nVq3ZBexXWGUGYLWBqh7h7T9UZAlSj5BveosOVi7vv02YiaBQReeh5IckMazdPR4f85ZCOzXcEkmCZB64ozUgFcOr5TRvdZCKJ1etF1kQpVqiHoLopqXKBLBjZCjNZBtiWe9ebqxMeR9crJVRR3zYbQZD"
-        );
+                    "Bearer",
+                    WhatsAppToken
+            );
         }
-        */
+        
 
-        public WhatsAppServiceMainMenuCFE(HttpClient httpCLient)
+        public WhatsAppServiceMainMenuCFE(HttpClient httpClient)
         {
-            _httpClient = httpCLient;
+            _httpClient = httpClient;
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(
-        "Bearer",
-        "EAATyUT8goNsBO78PyQq3tlsaWnzbTixRjgmt3BXMTyLjMMbj2TZCuMLBaO6IcACTg378MBthV6S1dBDWIUd66nY2nVq3ZBexXWGUGYLWBqh7h7T9UZAlSj5BveosOVi7vv02YiaBQReeh5IckMazdPR4f85ZCOzXcEkmCZB64ozUgFcOr5TRvdZCKJ1etF1kQpVqiHoLopqXKBLBjZCjNZBtiWe9ebqxMeR9crJVRR3zYbQZD"
-        );
+                    "Bearer",
+                    "EAATyUT8goNsBO78PyQq3tlsaWnzbTixRjgmt3BXMTyLjMMbj2TZCuMLBaO6IcACTg378MBthV6S1dBDWIUd66nY2nVq3ZBexXWGUGYLWBqh7h7T9UZAlSj5BveosOVi7vv02YiaBQReeh5IckMazdPR4f85ZCOzXcEkmCZB64ozUgFcOr5TRvdZCKJ1etF1kQpVqiHoLopqXKBLBjZCjNZBtiWe9ebqxMeR9crJVRR3zYbQZD"
+                );
         }
 
         // this method encapsulates the cURL Http request
