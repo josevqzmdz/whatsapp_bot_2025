@@ -1,0 +1,44 @@
+curl 'REDACTED' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer REDACTED' \
+-d '{
+    // MENU PARA MOSTRAR SALDO A FAVOR
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": "REDACTED",
+    "type": "interactive",
+    "interactive": {
+        "type": "list",
+        "header": {
+            "type": "text",
+            "text": "Opcion 1: Mostrar saldo a favor."
+        },
+        "body": {
+            "text": "Usted tiene un saldo a favor de $XX.XX ."
+        },
+
+        "action": {
+            "button": "Menu de opciones",
+            "sections": [
+                {
+                    "title": "Saldo a favor.",
+                    "rows": [
+                        {
+                        //ROW RETURN PREVIOUS MENU
+                        "id": "ROW_RETURN_MENU",
+                        "title": "A",
+                        "description": "Para volver al menu anterior, escriba A."
+                        },
+                        {
+                        // ROW REQUEST SUPPORT
+                        // NOTE: maybe this options is not neeeded, we will see...
+                        "id": "ROW_REQ_SUPPORT",
+                        "title": "B",
+                        "description": "Para obtener ayuda de un ejecutivo, escribar B."
+                        }        
+                    ]
+                }
+            ]
+        }
+    }
+}'

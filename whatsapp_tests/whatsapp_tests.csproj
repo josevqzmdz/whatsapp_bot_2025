@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="curl_messages_server\" />
-    <Folder Include="user_attributes\" />
   </ItemGroup>
 
 </Project>

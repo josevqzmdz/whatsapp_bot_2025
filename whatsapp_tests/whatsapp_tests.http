@@ -1,6 +1,6 @@
 @whatsapp_tests_HostAddress = http://localhost:5212
 
-GET {{whatsapp_tests_HostAddress}}/weatherforecast/
+GET {{whatsapp_tests_HostAddress}}/MongoDBConnection/
 Accept: application/json
 
 ###
