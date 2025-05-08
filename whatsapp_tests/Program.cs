@@ -33,6 +33,8 @@ app.MapPost("/webhook", async (HttpRequest request, WhatsAppServiceMainMenuCFE w
     return Results.Ok();
 });
 
+app.Run();
+
 /*
  * ignore this crap
 builder.Services.AddControllers();

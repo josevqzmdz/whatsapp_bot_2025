@@ -39,6 +39,6 @@ namespace whatsapp_tests.user_attributes
             public string timestamp { get; set; }
             public Text text { get; set; }
 
-
+        }
     }
 }
