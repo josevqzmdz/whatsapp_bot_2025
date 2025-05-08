@@ -9,15 +9,36 @@ using whatsapp_tests.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// run mongodb ping
-var mongo = new MongoDBConnection();
-mongo.Ping();
+///////////////////////////////////////////////
 
 builder.Services.AddHttpClient<WhatsAppServiceMainMenuCFE>();
 // builds the main instance
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+// Add services to the container.
+
+// run mongodb ping
+//var mongo = new MongoDBConnection();
+//mongo.Ping();
+
 // createss the whatsapp webhook controller
 app.MapPost("/webhook", async (HttpRequest request, WhatsAppServiceMainMenuCFE whatsappservicemainmenucfe) =>
 {
@@ -35,28 +56,3 @@ app.MapPost("/webhook", async (HttpRequest request, WhatsAppServiceMainMenuCFE w
 
 app.Run();
 
-/*
- * ignore this crap
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
-
-*/
