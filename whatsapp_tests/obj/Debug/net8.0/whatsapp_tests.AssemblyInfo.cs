@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("whatsapp_tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5749c8b8c1e9e9b88276f3282c6c8798e7fadd0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+849657a01273f6a99323d65088af3a4316cb5274")]
 [assembly: System.Reflection.AssemblyProductAttribute("whatsapp_tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("whatsapp_tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

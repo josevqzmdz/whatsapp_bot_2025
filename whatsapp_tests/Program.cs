@@ -43,23 +43,22 @@ app.MapControllers();
 // createss the whatsapp webhook controller
 app.MapPost("/webhook", async (HttpRequest request, WhatsAppService whatsappservicemainmenucfe) =>
 {
-    using var reader = new StreamReader(request.Body);
-    var body = await reader.ReadToEndAsync();
-    
-
     // TODO: find a way to change the value of the phone (my phone in this case)
     // for oncoming bot requests
     var phone = "523541090470";
 
+    await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
+    using var reader = new StreamReader(request.Body);
+    //var body = await reader.ReadToEndAsync();
+
+    //Console.WriteLine("Received message: " + body);
+
     //var payload = JsonSerializer.Deserialize<WhatsAppService>(body);
     //var userPhone = payload?.entry?[0]?.changes?[0]?.value?.messages?[0]?.from;
-
-    await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
 
     // the following code reads the reply from the user and 
     // makes a choice based on his reply
 
-    Console.WriteLine("Received message: " + body);
 
     return Results.Ok();
 });

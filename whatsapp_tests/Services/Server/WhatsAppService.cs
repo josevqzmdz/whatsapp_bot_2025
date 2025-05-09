@@ -22,13 +22,18 @@ namespace whatsapp_tests.Services.Server
         
         */
 
+        // TO-DO: 
+        // figure out a way to make the whatsapp token
+        // not expire every hour
+        // otherwise come here and generate a new one
+        // https://developers.facebook.com/tools/explorer/
         public WhatsAppService(HttpClient httpClient)
         {
             _httpClient = httpClient;
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(
                     "Bearer",
-                    "EAATyUT8goNsBOyc7F4LZCvi74O17XZB1TmlicfMp5ZCtF2gZAZCwxWZACust3QNnnK5Qyh5RnToV0b89yrneXCPr0bWJz6yfTN71ODdbnqYRB1eWIxrg133x7VhLLbn2kHKJZAiQkqHlk6oxLF8sKGcD2QI3PZBtWM19L5ClXBk1gZCfZCLaqjCbCuvPUFfv07YISuo3vm9Q2QLvakXSkARcr0vHRFe2PQ"
+                    "EAATyUT8goNsBO7QZC9mWPczlhJ0t3YEpwf0NovEj56l1lzLJ1U3phdVveirj3QQhqCH1l2UpfaA6ab2n7uCg320M0UxF5QxXVVEX0MsRYd9sqkTICxHF1sm0qj89NdRZCdKFyEFPKekfMPTIwaVcc8pT5LbgnqLXYkkA1H8J3ITvoitiWptIsfeF8WzGzZBfGx5yTvUkRAg4n9MZA5dGlx9uvSoZD"
                 );
         }
 
