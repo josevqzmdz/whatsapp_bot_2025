@@ -4,8 +4,9 @@
 // and thats it, but running through ASP.NET as opposed to sending it 
 // through POSTMAN with a JSON file
 
+using System.Text.Json;
 using whatsapp_tests.MongoDB_Boilerplate;
-using whatsapp_tests.Services;
+using whatsapp_tests.Services.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 ///////////////////////////////////////////////
 
-builder.Services.AddHttpClient<WhatsAppServiceMainMenuCFE>();
+builder.Services.AddHttpClient<WhatsAppService>();
 // builds the main instance
 var app = builder.Build();
 
@@ -36,20 +37,29 @@ app.MapControllers();
 // Add services to the container.
 
 // run mongodb ping
-//var mongo = new MongoDBConnection();
-//mongo.Ping();
+// var mongo = new MongoDBConnection();
+// mongo.Ping();
 
 // createss the whatsapp webhook controller
-app.MapPost("/webhook", async (HttpRequest request, WhatsAppServiceMainMenuCFE whatsappservicemainmenucfe) =>
+app.MapPost("/webhook", async (HttpRequest request, WhatsAppService whatsappservicemainmenucfe) =>
 {
     using var reader = new StreamReader(request.Body);
     var body = await reader.ReadToEndAsync();
-    Console.WriteLine("Received message: " + body);
+    
 
     // TODO: find a way to change the value of the phone (my phone in this case)
     // for oncoming bot requests
     var phone = "523541090470";
+
+    //var payload = JsonSerializer.Deserialize<WhatsAppService>(body);
+    //var userPhone = payload?.entry?[0]?.changes?[0]?.value?.messages?[0]?.from;
+
     await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
+
+    // the following code reads the reply from the user and 
+    // makes a choice based on his reply
+
+    Console.WriteLine("Received message: " + body);
 
     return Results.Ok();
 });

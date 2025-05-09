@@ -2,7 +2,7 @@
 
 namespace whatsapp_tests.user_attributes
 {
-    public class WhatsAppMessage
+    public class WhatsAppUser
         // this class is for storing whatever info
         // whatsapp will send serialized in those cURL
         // HttpRequest headers (JSON)
