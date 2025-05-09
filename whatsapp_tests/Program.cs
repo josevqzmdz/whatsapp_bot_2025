@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 ///////////////////////////////////////////////
 
-builder.Services.AddHttpClient<WhatsAppService>();
+builder.Services.AddHttpClient<WhatsAppController>();
 // builds the main instance
 var app = builder.Build();
 
@@ -41,7 +41,7 @@ app.MapControllers();
 // mongo.Ping();
 
 // createss the whatsapp webhook controller
-app.MapPost("/webhook", async (HttpRequest request, WhatsAppService whatsappservicemainmenucfe) =>
+app.MapPost("/webhook", async (HttpRequest request, WhatsAppController whatsappservicemainmenucfe, ILogger<Program> logger) =>
 {
     // TODO: find a way to change the value of the phone (my phone in this case)
     // for oncoming bot requests
@@ -49,6 +49,12 @@ app.MapPost("/webhook", async (HttpRequest request, WhatsAppService whatsappserv
 
     await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
     using var reader = new StreamReader(request.Body);
+
+    // logs
+    var body = await reader.ReadToEndAsync();
+    
+    Console.WriteLine("Message received from user: ", body);
+
     //var body = await reader.ReadToEndAsync();
 
     //Console.WriteLine("Received message: " + body);

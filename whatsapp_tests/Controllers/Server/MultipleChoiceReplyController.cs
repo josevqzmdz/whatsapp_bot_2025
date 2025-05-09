@@ -1,12 +1,12 @@
-﻿namespace whatsapp_tests.Controllers
+﻿namespace whatsapp_tests.Services.Server
 {
     // this class' whole point is to 
     // redirect the user's input to whatever
     // option he desires while making the code more modular
     // and versatile
-    public class MultipleChoiceReply
+    public class MultipleChoiceReplyController
     {
-        public MultipleChoiceReply(int numChoices, String ROW_OPTION, String userInput)
+        public MultipleChoiceReplyController(int numChoices, string ROW_OPTION, string userInput)
         {
 
         }
