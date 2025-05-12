@@ -40,7 +40,7 @@ HttpClient client = new HttpClient();
 
 WhatsAppController whatsappController = new WhatsAppController(
         client,
-        // REDACTED - FILL YOUR OWN INFO HERE!!!
+        
     );
 
 // createss the whatsapp webhook controller

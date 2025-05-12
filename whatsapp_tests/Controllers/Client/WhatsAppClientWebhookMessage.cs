@@ -89,7 +89,7 @@ namespace whatsapp_tests.Services.Client
                 // these two lines of code encapsulate the aforementioned...
                 var content = new StringContent(JsonConvert2.SerializeObject(jsonBody), Encoding.UTF8, "application/json");
                 // and then send an asyncronous request, to the graph.facebook webhook, then wait for a response
-                var response = await _whatsappController._httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
+                var response = await _whatsappController._httpClient.PostAsync(_whatsappController.WhatsAppWebhookURL, content);
 
                 response.EnsureSuccessStatusCode();
             }// end of getClientJson String
@@ -156,7 +156,7 @@ namespace whatsapp_tests.Services.Client
                 // these two lines of code encapsulate the aforementioned...
                 var content = new StringContent(JsonConvert2.SerializeObject(jsonBody), Encoding.UTF8, "application/json");
                 // and then send an asyncronous request, to the graph.facebook webhook, then wait for a response
-                var response = await _whatsappController._httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
+                var response = await _whatsappController._httpClient.PostAsync(_whatsappController.WhatsAppWebhookURL, content);
 
                 response.EnsureSuccessStatusCode();
                 return response.EnsureSuccessStatusCode().ToString();
