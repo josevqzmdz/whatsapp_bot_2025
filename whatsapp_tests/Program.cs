@@ -40,16 +40,12 @@ HttpClient client = new HttpClient();
 
 WhatsAppController whatsappController = new WhatsAppController(
         client,
-        "523541090470",
-        "EAATyUT8goNsBO1SvTSb8HNDtZAwpWMd77oNzdeBNzuecLYDw8i7vtYioR4PV7UH6YUMv6hD6WDMAMXUk7vxbou5uH2ToCxBExfHqPXfqLKGckZBAWT3elVudQVxW8tWuSaVopYg5sAbOcgkb2Cmc7cZAAn26WxtiqQeIzRdZCfmt4QOur4ZBPF9zIyynpq6occGK1QgdkFZBznxNNaX1j3UGrdcvEd",
-        "https://graph.facebook.com/v17.0/579992435207524/messages"
+        // insert your own info here!
     );
 
 // createss the whatsapp webhook controller
 app.MapPost("/webhook", async (HttpRequest request, HttpResponse response) =>
 {
-    var phone = "523541090470";
-    whatsappController._toPhoneNumber = phone;
 
     // reads the content of the message once
     using var reader = new StreamReader(request.Body);
