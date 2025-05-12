@@ -44,3 +44,4 @@ C:\work_study_2025\whatsapp_tests\whatsapp_tests\bin\Debug\net8.0\curl_messages_
 C:\work_study_2025\whatsapp_tests\whatsapp_tests\bin\Debug\net8.0\curl_messages_server\multiple_choice_msg.json
 C:\work_study_2025\whatsapp_tests\whatsapp_tests\bin\Debug\net8.0\curl_messages_server\show_cleared_balance.json
 C:\work_study_2025\whatsapp_tests\whatsapp_tests\obj\Debug\net8.0\whatsapp_tests.sourcelink.json
+C:\work_study_2025\whatsapp_tests\whatsapp_tests\bin\Debug\net8.0\Newtonsoft.Json.dll
