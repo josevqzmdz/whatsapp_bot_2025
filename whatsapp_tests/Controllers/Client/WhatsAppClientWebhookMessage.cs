@@ -47,16 +47,86 @@ namespace whatsapp_tests.Services.Client
         public string? phone_number_id { get; set; }
         public string? field { get; set; }
 
-        public async Task getClientJson(string clientPhoneNumber)
+        public async Task getClientJson()
         {
-            // this entire thing is what would go inside one of those
-            // huge JSON packages that whatsapp API generates
-
-            var jsonBody = new
+            try
             {
-                whatsapp_acc = "whatsapp_business_account",
-                entry = new[]
+                // this entire thing is what would go inside one of those
+                // huge JSON packages that whatsapp API generates
+
+                var jsonBody = new
                 {
+                    whatsapp_acc = "whatsapp_business_account",
+                    entry = new[]
+                    {
+                    new
+                    {
+                        id = "WHATSAPP_BUSINESS_ACCOUNT_ID",
+                        changes = new[]
+                        {
+			            // https://stackoverflow.com/questions/19535357/no-best-type-found-for-implicitly-typed-array
+			            // this thing was giving the aforementioned error because, even if we are declaring
+			            // anonymous types, they *need* to have the same definition
+                            new
+                            {
+                                field = "messages",
+                                value = new
+                                {
+                                    messaging_product = "whatsapp",
+                                    metadata = JsonConvert2.SerializeObject(new
+                                    {
+                                        // gets the phone number from the other class
+                                        display_phone_number = _whatsappController?._toPhoneNumber,
+                                        phone_number_id = this.phone_number_id
+                                    })
+                                }
+                            }
+                        }// end of changes anon method
+                    }
+                }// end of entry anon method
+                }; // end of jsonBody anon method
+
+                // these two lines of code encapsulate the aforementioned...
+                var content = new StringContent(JsonConvert2.SerializeObject(jsonBody), Encoding.UTF8, "application/json");
+                // and then send an asyncronous request, to the graph.facebook webhook, then wait for a response
+                var response = await _whatsappController._httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
+
+                response.EnsureSuccessStatusCode();
+            }// end of getClientJson String
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Error caught: NullReferenceException: ", ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine("Error caught: ArgumentNullException: ", ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine("Error caught: ArgumentException: ", ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Error caught: FormatException: ", ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine("Error caught: InvalidOperationException: ", ex.Message);
+            }
+
+        }// end of getClientJson method
+
+        public async Task<string> getClientJsonToString(string clientPhoneNumber)
+        {
+            try
+            {
+                // this entire thing is what would go inside one of those
+                // huge JSON packages that whatsapp API generates
+                var jsonBody = new
+                {
+                    whatsapp_acc = "whatsapp_business_account",
+                    entry = new[]
+                    {
                     new
                     {
                         id = "WHATSAPP_BUSINESS_ACCOUNT_ID",
@@ -81,14 +151,41 @@ namespace whatsapp_tests.Services.Client
                         }// end of changes anon method
                     }
                 }// end of entry anon method
-            }; // end of jsonBody anon method
+                }; // end of jsonBody anon method
 
-            // these two lines of code encapsulate the aforementioned...
-            var content = new StringContent(JsonConvert2.SerializeObject(jsonBody), Encoding.UTF8, "application/json");
-            // and then send an asyncronous request, to the graph.facebook webhook, then wait for a response
-            var response = await _httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
+                // these two lines of code encapsulate the aforementioned...
+                var content = new StringContent(JsonConvert2.SerializeObject(jsonBody), Encoding.UTF8, "application/json");
+                // and then send an asyncronous request, to the graph.facebook webhook, then wait for a response
+                var response = await _whatsappController._httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
 
-            response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
+                return response.EnsureSuccessStatusCode().ToString();
+            }// end of main method
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Error caught: NullReferenceException: ", ex.Message);
+                return "error logged";
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine("Error caught: ArgumentNullException: ", ex.Message);
+                return "error logged";
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine("Error caught: ArgumentException: ", ex.Message);
+                return "error logged";
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Error caught: FormatException: ", ex.Message);
+                return "error logged";
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine("Error caught: InvalidOperationException: ", ex.Message);
+                return "error logged";
+            }
 
         }// end of getClientJson method
     }   

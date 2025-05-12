@@ -7,35 +7,29 @@ namespace whatsapp_tests.Services.Server
 {
     public class WhatsAppController
     {
-        private readonly HttpClient _httpClient;
+        public readonly HttpClient _httpClient;
+        public string _toPhoneNumber { get; set; }
+        public string WhatsAppToken { get; set; }
+        public string WhatsAppWebhookURL { get; set; }
 
         // constructor
-        /*
-        public WhatsAppService(HttpClient httpClient, string WhatsAppToken)
-        {
-            _httpClient = httpClient;
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(
-                    "Bearer",
-                    WhatsAppToken
-            );
-        }
-        
-        */
 
         // TO-DO: 
         // figure out a way to make the whatsapp token
         // not expire every hour
         // otherwise come here and generate a new one
         // https://developers.facebook.com/tools/explorer/
-        public WhatsAppController(HttpClient httpClient)
+        public WhatsAppController(HttpClient httpClient, string clientPhoneNumber, string whatsAppToken, string whatsAppWebhookURL)
         {
             _httpClient = httpClient;
+            WhatsAppToken = whatsAppToken;
+            WhatsAppWebhookURL = whatsAppWebhookURL;
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(
                     "Bearer",
-                    "EAATyUT8goNsBO67mTHJs1wV1Epyj4RCoYoVjUZBpMacx2lr3Gz439POXIpEdRHd5wFZAa8mn67sPUlbpwV77xFakahfqk6yEZAEAV7oacAXZAWCcAucFEeFghFNPW7Ogyg8o5IDZBHb0tr5krUXkucFyj5MR6ZB9OPbAuSYDud64e1DahYZC7M59vjHeUbWIVmgZBTM0pZBGk5kxZCi6eLuZAnC5TliZBUQZD"
+                    whatsAppToken
                 );
+            _toPhoneNumber = clientPhoneNumber;
         }
 
         /*
@@ -63,7 +57,7 @@ namespace whatsapp_tests.Services.Server
             };
 
             var content = new StringContent(JsonSerializer.Serialize(jsonBody), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
+            var response = await _httpClient.PostAsync(WhatsAppWebhookURL, content);
             response.EnsureSuccessStatusCode();
         }
 
@@ -137,7 +131,7 @@ namespace whatsapp_tests.Services.Server
         // -------
         // POST
         // -------
-        public async Task SendMainMenuAsync(string toPhoneNumber)
+        public async Task SendMainMenuAsync()
         {
             // this entire thing is what would go inside one of those
             // huge JSON packages that whatsapp API generates
@@ -145,7 +139,7 @@ namespace whatsapp_tests.Services.Server
             {
                 messaging_product = "whatsapp",
                 recipient_type = "individual",
-                to = toPhoneNumber,
+                to = _toPhoneNumber,
                 type = "interactive",
                 // this is the JSON block 
                 // where the menu and its contents are displayed
@@ -205,7 +199,7 @@ namespace whatsapp_tests.Services.Server
             // these two lines of code encapsulate the aforementioned...
             var content = new StringContent(JsonSerializer.Serialize(jsonBody), Encoding.UTF8, "application/json");
             // and then send an asyncronous request, to the graph.facebook webhook, then wait for a response
-            var response = await _httpClient.PostAsync("https://graph.facebook.com/v17.0/579992435207524/messages", content);
+            var response = await _httpClient.PostAsync(WhatsAppWebhookURL, content);
 
             response.EnsureSuccessStatusCode();
         }
@@ -216,13 +210,13 @@ namespace whatsapp_tests.Services.Server
         // the CFE, comision fed de electricidad, from mexico
         // here we suppose the client can actually get his
         // cleared balance from the bot
-        public async Task SendClearedBalanceAsync(string toPhoneNumber)
+        public async Task SendClearedBalanceAsync()
         {
             var jsonBody = new
             {
                 messaging_product = "whatsapp",
                 recipient_type = "individual",
-                to = toPhoneNumber,
+                to = _toPhoneNumber,
                 type = "interactive",
                 interactive = new
                 {

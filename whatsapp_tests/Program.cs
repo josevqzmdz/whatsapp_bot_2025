@@ -35,24 +35,32 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+// HttpClient is intended to be instantiated once per application, rather than per-use. See Remarks.
+HttpClient client = new HttpClient();
+
+WhatsAppController whatsappController = new WhatsAppController(
+        client,
+        // REDACTED - FILL YOUR OWN INFO HERE!!!
+    );
 
 // createss the whatsapp webhook controller
-app.MapPost("/webhook", async (HttpRequest request, HttpResponse response, WhatsAppController whatsappservicemainmenucfe) =>
+app.MapPost("/webhook", async (HttpRequest request, HttpResponse response) =>
 {
     var phone = "523541090470";
+    whatsappController._toPhoneNumber = phone;
 
     // reads the content of the message once
     using var reader = new StreamReader(request.Body);
     var body = await reader.ReadToEndAsync();
 
     // sends the main menu to the whatsapp phone number
-    await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
+    await whatsappController.SendMainMenuAsync();
 
     Console.WriteLine("message the user sent: ");
     
-    WhatsAppClientWebhookMessage message = JsonSerializer.Deserialize<WhatsAppClientWebhookMessage>(body);
-    Console.WriteLine(message);
-
+    WhatsAppClientWebhookMessage message = new WhatsAppClientWebhookMessage(whatsappController);
+    await message.getClientJson();
+    
     return Results.Ok();
 });
 
