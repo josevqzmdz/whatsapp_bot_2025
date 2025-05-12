@@ -1,11 +1,13 @@
-// ASP.NET version of "main" method in java or C/c++
+﻿// ASP.NET version of "main" method in java or C/c++
 // this is where the main program runs, gotta start small ya know
 // basically sends the cURL/JSON thingy to my main phone using whatsapp API
 // and thats it, but running through ASP.NET as opposed to sending it 
 // through POSTMAN with a JSON file
 
+using MongoDB.Bson;
 using System.Text.Json;
 using whatsapp_tests.MongoDB_Boilerplate;
+using whatsapp_tests.Services.Client;
 using whatsapp_tests.Services.Server;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,37 +36,22 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// Add services to the container.
-
-// run mongodb ping
-// var mongo = new MongoDBConnection();
-// mongo.Ping();
-
 // createss the whatsapp webhook controller
-app.MapPost("/webhook", async (HttpRequest request, WhatsAppController whatsappservicemainmenucfe, ILogger<Program> logger) =>
+app.MapPost("/webhook", async (HttpRequest request, HttpResponse response, WhatsAppController whatsappservicemainmenucfe) =>
 {
-    // TODO: find a way to change the value of the phone (my phone in this case)
-    // for oncoming bot requests
     var phone = "523541090470";
 
-    await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
+    // reads the content of the message once
     using var reader = new StreamReader(request.Body);
-
-    // logs
     var body = await reader.ReadToEndAsync();
+
+    // sends the main menu to the whatsapp phone number
+    await whatsappservicemainmenucfe.SendMainMenuAsync(phone);
+
+    Console.WriteLine("message the user sent: ");
     
-    Console.WriteLine("Message received from user: ", body);
-
-    //var body = await reader.ReadToEndAsync();
-
-    //Console.WriteLine("Received message: " + body);
-
-    //var payload = JsonSerializer.Deserialize<WhatsAppService>(body);
-    //var userPhone = payload?.entry?[0]?.changes?[0]?.value?.messages?[0]?.from;
-
-    // the following code reads the reply from the user and 
-    // makes a choice based on his reply
-
+    WhatsAppClientWebhookMessage message = JsonSerializer.Deserialize<WhatsAppClientWebhookMessage>(body);
+    Console.WriteLine(message);
 
     return Results.Ok();
 });

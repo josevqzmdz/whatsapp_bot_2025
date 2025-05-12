@@ -34,7 +34,7 @@ namespace whatsapp_tests.Services.Server
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(
                     "Bearer",
-                    "EAATyUT8goNsBO6ErvB4NAl2J4pvoZBxWFrg9bVeupMxnolVz3wuLc0xInKvPSyxWTxxwVZC8oHQR3K06ctOsFQLo8zuPoNTgRaAApvxnlV6ZCVwoLOPZA7AxHLSwqb63e18nqmEcoaGlia2EIZCaIjVZAZBxUqPPDH4UohOuBc4ZCz4ImOzDeSrVnoyHO3r8Lp6nxGF7gZBwLXCAkVr2EHRiUMHwunRKU"
+                    "EAATyUT8goNsBO67mTHJs1wV1Epyj4RCoYoVjUZBpMacx2lr3Gz439POXIpEdRHd5wFZAa8mn67sPUlbpwV77xFakahfqk6yEZAEAV7oacAXZAWCcAucFEeFghFNPW7Ogyg8o5IDZBHb0tr5krUXkucFyj5MR6ZB9OPbAuSYDud64e1DahYZC7M59vjHeUbWIVmgZBTM0pZBGk5kxZCi6eLuZAnC5TliZBUQZD"
                 );
         }
 
@@ -269,9 +269,7 @@ namespace whatsapp_tests.Services.Server
                     }// end of action json array
                 }//end of interactive json array
             };// end of  jsonbody object
-        }// end of sendclearedbalance method
-
-
+        }// end of sendclearedbalance methodss
 
     }// end of whatsappserviceMenuCFE class
 }

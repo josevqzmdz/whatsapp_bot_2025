@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yfrq2a3fW0A=",
+  "dgSpecHash": "bLG6L2FEplM=",
   "success": true,
   "projectFilePath": "C:\\work_study_2025\\whatsapp_tests\\whatsapp_tests\\whatsapp_tests.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\royer\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\royer\\.nuget\\packages\\mongodb.bson\\3.4.0\\mongodb.bson.3.4.0.nupkg.sha512",
     "C:\\Users\\royer\\.nuget\\packages\\mongodb.driver\\3.4.0\\mongodb.driver.3.4.0.nupkg.sha512",
+    "C:\\Users\\royer\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\royer\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\royer\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\royer\\.nuget\\packages\\swashbuckle.aspnetcore\\8.1.1\\swashbuckle.aspnetcore.8.1.1.nupkg.sha512",
